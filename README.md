@@ -5,7 +5,13 @@ ansible influxdb enterprise cluster playbook
 
 This is an enterprise installation of influxdb. This playbook is based on the vendor documentation. https://docs.influxdata.com/enterprise/v1.1/production_installation/
 
-####Adding meta and data nodes must be done manually
+####required ansible variables
+If these variables are not defined the playbook run will fail:
+
+  * influxdb_ee_license_key - This will set the license key for all enterprise products
+  * influxdb_ee_shared_secret - This is required for secure communication between the nodes
+  
+####adding meta and data nodes must be done manually
 
     influxd-ctl add-meta meta-01:8091
     influxd-ctl add-data data-01:8088
