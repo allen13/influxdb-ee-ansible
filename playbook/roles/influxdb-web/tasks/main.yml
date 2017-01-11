@@ -5,7 +5,7 @@
   template:
     src: influx-enterprise.conf
     dest: /etc/influx-enterprise/influx-enterprise.conf
-  notify: restart influxdb-meta
+  notify: restart influx-enterprise
 
 - name: setup influx web database
   become_user: influx-enterprise
