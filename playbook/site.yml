@@ -1,0 +1,35 @@
+- name: shared-hosts-file
+  hosts: all
+  gather_facts: false
+  become: true
+  roles:
+    - shared-hosts-file
+  tags:
+    - shared-hosts-file
+
+- name: influxdb-meta
+  hosts: influxdb-meta
+  gather_facts: false
+  become: true
+  roles:
+    - influxdb-meta
+  tags:
+    - influxdb-meta
+
+- name: influxdb-data
+  hosts: influxdb-data
+  gather_facts: false
+  become: true
+  roles:
+    - influxdb-data
+  tags:
+    - influxdb-data
+
+- name: influxdb-web
+  hosts: influxdb-web
+  gather_facts: false
+  become: true
+  roles:
+    - influxdb-web
+  tags:
+    - influxdb-web

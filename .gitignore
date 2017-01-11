@@ -1,0 +1,7 @@
+.idea
+.vagrant
+*.vdi
+*.pyc
+**/.*.swp
+.bundle
+site.retry

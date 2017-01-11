@@ -1,0 +1,11 @@
+- name: install influxdb data
+  yum: name={{ influxdb_ee_data_rpm }}
+
+- name: setup influxdb data config
+  template:
+    src: influxdb.conf
+    dest: /etc/influxdb/influxdb.conf
+  notify: restart influxdb
+
+- name: start and enable influxdb
+  service: name=influxdb state=started enabled=yes

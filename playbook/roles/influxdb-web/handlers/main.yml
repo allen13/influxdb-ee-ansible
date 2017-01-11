@@ -1,0 +1,2 @@
+- name: restart influx-enterprise
+  service: name=influx-enterprise state=restarted

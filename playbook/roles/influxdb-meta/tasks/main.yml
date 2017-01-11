@@ -1,0 +1,11 @@
+- name: install influxdb meta
+  yum: name={{ influxdb_ee_meta_rpm }}
+
+- name: setup influxdb meta config
+  template:
+    src: influxdb-meta.conf
+    dest: /etc/influxdb/influxdb-meta.conf
+  notify: restart influxdb-meta
+
+- name: start and enable influxdb-meta
+  service: name=influxdb-meta state=started enabled=yes
