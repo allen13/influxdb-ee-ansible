@@ -13,7 +13,7 @@
 
 # Change this option to true to disable reporting.
 # reporting-disabled = false
-# bind-address = ":8088"
+bind-address = "{{ .Env.POD_IP }}:8088"
 
 # Hostname advertised by this host for remote addresses.  This must be resolvable by all
 # other nodes in the cluster
@@ -37,10 +37,10 @@ hostname = "{{ .Env.HOSTNAME }}.influxdb-meta"
   dir = "/var/lib/influxdb/meta"
 
   # The default address for raft, cluster, snapshot, etc..
-  # bind-address = ":8089"
+  bind-address = "{{ .Env.POD_IP }}:8089"
 
   # The default address to bind the API to.
-  # http-bind-address = ":8091"
+  http-bind-address = "{{ .Env.POD_IP }}:8091"
 
   # Determines whether the API uses HTTPS
   # https-enabled = false
