@@ -1,7 +1,8 @@
-FROM alpine:3.5
+FROM alpine:edge
 
 ENV DOCKERIZE_VERSION 0.2.0
 RUN apk add --no-cache ca-certificates curl && \
+    update-ca-certificates && \
     mkdir -p /usr/local/bin/ && \
     curl -SL https://github.com/jwilder/dockerize/releases/download/v${DOCKERIZE_VERSION}/dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz \
     | tar xzC /usr/local/bin
