@@ -27,6 +27,7 @@ ENV INFLUXDB_WEB_URL http://influxdb-web:3000
 ENV INFLUXDB_WEB_DB postgres://postgres:password@influxdb-web-postgres:5432/enterprise
 ENV INFLUXDB_LICENSE_KEY INVALID
 ENV INFLUXDB_SHARED_SECRET SECRET
+ENV INFLUXDB_LICENSE_FILE /etc/influx-enterprise/license/influx-enterprise.key.json
 
 CMD dockerize \
     -template /etc/influx-enterprise/influx-enterprise.tmpl:/etc/influx-enterprise/influx-enterprise.conf \

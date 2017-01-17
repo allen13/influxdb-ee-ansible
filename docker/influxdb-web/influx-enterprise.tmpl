@@ -6,8 +6,8 @@ hostname = "{{ .Env.HOSTNAME }}" # ENV: HOSTNAME
 port = "3000" # ENV: PORT
 
 # You need either a license key or a license file to run Enterprise Web
-license-key = "{{ .Env.INFLUXDB_LICENSE_KEY }}" # ENV: LICENSE_KEY
-license-file = "" # ENV: LICENSE_FILE
+license-key = "" # ENV: LICENSE_KEY
+license-file = "{{ .Env.INFLUXDB_LICENSE_FILE }}" # ENV: LICENSE_FILE
 session-lifetime = "24h" # time until users are logged out automatically
 autologout = false # triggers logout on browser tab close
 
