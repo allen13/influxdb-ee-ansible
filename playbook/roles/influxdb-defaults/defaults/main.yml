@@ -1,3 +1,5 @@
 influxdb_ee_meta_rpm: https://dl.influxdata.com/enterprise/releases/influxdb-meta-1.1.1_c1.1.1.x86_64.rpm
 influxdb_ee_data_rpm: https://dl.influxdata.com/enterprise/releases/influxdb-data-1.1.1_c1.1.1.x86_64.rpm
 influxdb_ee_web_rpm: https://s3.amazonaws.com/influx-enterprise/releases/influx-enterprise-1.1.1.x86_64.rpm
+
+influxdb_registration_url: http://{{ hostvars[groups['influxdb-web'][0]]['private_ip'] }}:3000
