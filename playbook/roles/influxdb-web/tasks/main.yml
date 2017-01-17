@@ -7,11 +7,5 @@
     dest: /etc/influx-enterprise/influx-enterprise.conf
   notify: restart influx-enterprise
 
-- name: setup influx web database
-  become_user: influx-enterprise
-  shell: influx-enterprise migrate --config /etc/influx-enterprise/influx-enterprise.conf
-  changed_when: false
-  run_once: true
-
 - name: start and enable influx-enterprise (web)
   service: name=influx-enterprise state=started enabled=yes
