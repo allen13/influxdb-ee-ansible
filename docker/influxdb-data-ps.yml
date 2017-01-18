@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: List
+items:
+# Headless service to provide DNS lookup
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: influxdb-data
+    name: influxdb-data
+  spec:
+    selector:
+      app: influxdb-data
+    #setting clusterIP to None is what makes it Headless
+    clusterIP: None
+    ports:
+      -
+        name: 8086-tcp
+        protocol: TCP
+        port: 8086
+        targetPort: 8086
+      -
+        name: 8088-tcp
+        protocol: TCP
+        port: 8088
+        targetPort: 8088
+
+- apiVersion: "apps/v1alpha1"
+  kind: PetSet
+  metadata:
+    name: influxdb-data
+  spec:
+    serviceName: influxdb-data
+    replicas: 4
+    template:
+      metadata:
+        annotations:
+          pod.alpha.kubernetes.io/initialized: "true"
+        labels:
+          app: influxdb-data
+      spec:
+        # just as other component in Kubernetes one
+        # or more containers are deployed
+        volumes:
+        - name: license-file
+          secret:
+            secretName: license-file
+        containers:
+        - name: influxdb-data
+          image: 192.168.0.121:5000/chronicle-influxdb-ee/influxdb-data:latest
+          imagePullPolicy: Always
+          ports:
+            -
+              containerPort: 8086
+              protocol: TCP
+            -
+              containerPort: 8088
+              protocol: TCP
+          resources:
+          env:
+          - name: POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          volumeMounts:
+          - name: data
+            mountPath: /var/lib/influxdb
+          - name: license-file
+            mountPath: /etc/influx-enterprise/license
+    volumeClaimTemplates:
+    - metadata:
+        name: data
+        annotations:
+          volume.alpha.kubernetes.io/storage-class: anything
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1000Gi

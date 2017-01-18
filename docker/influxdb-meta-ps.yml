@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: List
+items:
+# Headless service to provide DNS lookup
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: influxdb-meta
+    name: influxdb-meta
+  spec:
+    selector:
+      app: influxdb-meta
+    #setting clusterIP to None is what makes it Headless
+    clusterIP: None
+    ports:
+      -
+        name: 8088-tcp
+        protocol: TCP
+        port: 8088
+        targetPort: 8088
+      -
+        name: 8089-tcp
+        protocol: TCP
+        port: 8089
+        targetPort: 8089
+      -
+        name: 8091-tcp
+        protocol: TCP
+        port: 8091
+        targetPort: 8091
+
+- apiVersion: "apps/v1alpha1"
+  kind: PetSet
+  metadata:
+    name: influxdb-meta
+  spec:
+    serviceName: influxdb-meta
+    replicas: 3
+    template:
+      metadata:
+        annotations:
+          pod.alpha.kubernetes.io/initialized: "true"
+        labels:
+          app: influxdb-meta
+      spec:
+        # just as other component in Kubernetes one
+        # or more containers are deployed
+        volumes:
+        - name: license-file
+          secret:
+            secretName: license-file
+        containers:
+        - name: influxdb-meta
+          image: 192.168.0.121:5000/chronicle-influxdb-ee/influxdb-meta:latest
+          imagePullPolicy: Always
+          ports:
+            -
+              containerPort: 8088
+              protocol: TCP
+            -
+              containerPort: 8089
+              protocol: TCP
+            -
+              containerPort: 8091
+              protocol: TCP
+          resources:
+          env:
+          - name: POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          volumeMounts:
+          - name: data
+            mountPath: /var/lib/influxdb
+          - name: license-file
+            mountPath: /etc/influx-enterprise/license
+    volumeClaimTemplates:
+    - metadata:
+        name: data
+        annotations:
+          volume.alpha.kubernetes.io/storage-class: anything
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 10Gi
