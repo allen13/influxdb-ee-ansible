@@ -24,8 +24,8 @@ EXPOSE 8088 8089 8091
 VOLUME /var/lib/influxdb
 
 ENV INFLUXDB_REGISTRATION_URL http://influxdb-web:3000
-ENV INFLUXDB_LICENSE_KEY INVALID
 ENV INFLUXDB_SHARED_SECRET SECRET
+ENV INFLUXDB_LICENSE_FILE /etc/influx-enterprise/license/influx-enterprise.key.json
 
 CMD dockerize \
     -template /etc/influxdb/influxdb-meta.tmpl:/etc/influxdb/influxdb-meta.conf \

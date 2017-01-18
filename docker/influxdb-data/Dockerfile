@@ -23,8 +23,8 @@ EXPOSE 8086 8088
 
 VOLUME /var/lib/influxdb
 
-ENV INFLUXDB_LICENSE_KEY INVALID
 ENV INFLUXDB_SHARED_SECRET SECRET
+ENV INFLUXDB_LICENSE_FILE /etc/influx-enterprise/license/influx-enterprise.key.json
 
 CMD dockerize \
     -template /etc/influxdb/influxdb.tmpl:/etc/influxdb/influxdb.conf \

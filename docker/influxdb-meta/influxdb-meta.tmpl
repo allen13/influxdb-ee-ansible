@@ -13,7 +13,7 @@
 
 # Change this option to true to disable reporting.
 # reporting-disabled = false
-bind-address = "{{ .Env.POD_IP }}:8088"
+bind-address = ":8088"
 
 # Hostname advertised by this host for remote addresses.  This must be resolvable by all
 # other nodes in the cluster
@@ -21,26 +21,26 @@ hostname = "{{ .Env.HOSTNAME }}.influxdb-meta"
 
 [enterprise]
   # Must be set to true to use the Enterprise Web UI
-  registration-enabled = false
+  registration-enabled = true
 
   # Must include the protocol (http://)
   registration-server-url = "{{ .Env.INFLUXDB_REGISTRATION_URL }}"
 
   # license-key and license-path are mutually exclusive, use only one and leave the other blank
-  license-key = "{{ .Env.INFLUXDB_LICENSE_KEY }}"
+  license-key = ""
 
   # license-key and license-path are mutually exclusive, use only one and leave the other blank
-  license-path = ""
+  license-path = "{{ .Env.INFLUXDB_LICENSE_FILE }}"
 
 [meta]
   # The location where cluster meta data is stored.
   dir = "/var/lib/influxdb/meta"
 
   # The default address for raft, cluster, snapshot, etc..
-  bind-address = "{{ .Env.POD_IP }}:8089"
+  bind-address = ":8089"
 
   # The default address to bind the API to.
-  http-bind-address = "{{ .Env.POD_IP }}:8091"
+  http-bind-address = ":8091"
 
   # Determines whether the API uses HTTPS
   # https-enabled = false
@@ -85,7 +85,7 @@ hostname = "{{ .Env.HOSTNAME }}.influxdb-meta"
   # lease-duration = "1m0s"
 
   # The shared secret used by the API for JWT authentication
-  shared-secret = "{{ .Env.INFLUXDB_SHARED_SECRET }}"
+  # shared-secret = "{{ .Env.INFLUXDB_SHARED_SECRET }}"
 
   # The shared secret used by the internal API for JWT authentication
-  internal-shared-secret = "{{ .Env.INFLUXDB_SHARED_SECRET }}"
+  # internal-shared-secret = "{{ .Env.INFLUXDB_SHARED_SECRET }}"

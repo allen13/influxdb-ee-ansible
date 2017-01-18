@@ -24,11 +24,11 @@ hostname = "{{ .Env.HOSTNAME }}.influxdb-data"
   registration-server-url = ""
 
   # license-key and license-path are mutually exclusive, use only one and leave the other blank
-  license-key = "{{ .Env.INFLUXDB_LICENSE_KEY }}"
+  license-key = ""
 
   # The path to a valid license file.  license-key and license-path are mutually exclusive,
   # use only one and leave the other blank.
-  license-path = ""
+  license-path = "{{ .Env.INFLUXDB_LICENSE_FILE }}"
 
 [meta]
   # Where the cluster metadata is stored
@@ -295,7 +295,7 @@ hostname = "{{ .Env.HOSTNAME }}.influxdb-data"
   # https-private-key = ""
 
   # The JWT auth shared secret to validate requests using JSON web tokens.
-  shared-sercret = "{{ .Env.INFLUXDB_SHARED_SECRET }}"
+  shared-secret = "{{ .Env.INFLUXDB_SHARED_SECRET }}"
 
   # The default chunk size for result sets that should be chunked.
   # max-row-limit = 10000

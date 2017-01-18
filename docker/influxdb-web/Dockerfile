@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.5
 
 ENV DOCKERIZE_VERSION 0.2.0
 RUN apk add --no-cache ca-certificates curl && \
@@ -25,7 +25,6 @@ EXPOSE 3000
 ENV HOSTNAME influxdb-web
 ENV INFLUXDB_WEB_URL http://influxdb-web:3000
 ENV INFLUXDB_WEB_DB postgres://postgres:password@influxdb-web-postgres:5432/enterprise
-ENV INFLUXDB_LICENSE_KEY INVALID
 ENV INFLUXDB_SHARED_SECRET SECRET
 ENV INFLUXDB_LICENSE_FILE /etc/influx-enterprise/license/influx-enterprise.key.json
 
