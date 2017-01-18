@@ -24,7 +24,7 @@ EXPOSE 3000
 
 ENV HOSTNAME influxdb-web
 ENV INFLUXDB_WEB_URL http://influxdb-web:3000
-ENV INFLUXDB_WEB_DB postgres://postgres:password@influxdb-web-postgres:5432/enterprise
+ENV INFLUXDB_WEB_DB postgres://postgres:password@influxdb-web-postgres:5432/enterprise?sslmode=disable
 ENV INFLUXDB_SHARED_SECRET SECRET
 ENV INFLUXDB_LICENSE_FILE /etc/influx-enterprise/license/influx-enterprise.key.json
 
