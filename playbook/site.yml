@@ -11,6 +11,7 @@
   hosts: influxdb-meta
   gather_facts: false
   become: true
+  serial: 1
   roles:
     - influxdb-meta
   tags:
@@ -18,6 +19,7 @@
 
 - name: influxdb-data
   hosts: influxdb-data
+  serial: 1
   gather_facts: false
   become: true
   roles:

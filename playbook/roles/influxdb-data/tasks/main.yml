@@ -1,5 +1,6 @@
 - name: install influxdb data
   yum: name={{ influxdb_ee_data_rpm }}
+  notify: restart influxdb
 
 - name: setup influxdb data config
   template:
