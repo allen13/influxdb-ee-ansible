@@ -1,6 +1,12 @@
-influxdb_ee_meta_rpm: https://dl.influxdata.com/enterprise/releases/influxdb-meta-1.2.0_c1.2.0.x86_64.rpm
-influxdb_ee_data_rpm: https://dl.influxdata.com/enterprise/releases/influxdb-data-1.2.0_c1.2.0.x86_64.rpm
+influxdb_ee_meta_rpm: https://dl.influxdata.com/enterprise/releases/influxdb-meta-1.2.1_c1.2.2.x86_64.rpm
+influxdb_ee_data_rpm: https://dl.influxdata.com/enterprise/releases/influxdb-data-1.2.1_c1.2.2.x86_64.rpm
 
-influxdb_ee_auth_enabled: "false"
+influxdb_ee_auth_enabled: "true"
 influxdb_ee_registration_enabled: "true"
-influxdb_registration_url: http://{{ hostvars[groups['influxdb-web'][0]]['private_ip'] }}:3000
+influxdb_ee_cache_max_memory_size: 33554432000
+influxdb_ee_max_series_per_database: 10000000
+influxdb_ee_max_values_per_tag: 0
+
+influxdb_ee_https_enabled: "false"
+influxdb_ee_meta_tls_enabled: "false"
+influxdb_ee_meta_insecure_tls: "false"

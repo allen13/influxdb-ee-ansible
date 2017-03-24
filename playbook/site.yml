@@ -26,12 +26,3 @@
     - influxdb-data
   tags:
     - influxdb-data
-
-- name: influxdb-web
-  hosts: influxdb-web
-  gather_facts: false
-  become: true
-  roles:
-    - influxdb-web
-  tags:
-    - influxdb-web

@@ -1,3 +1,10 @@
+- name: install tls certificate
+  copy: content={{ influxdb_ee_https_certificate_content }} dest={{ influxdb_ee_https_certificate }} owner=root group=influxdb mode=0640
+  when:
+    - influxdb_ee_https_certificate_content is defined
+    - influxdb_ee_https_certificate is defined
+  notify: restart influxdb
+
 - name: install influxdb data
   yum: name={{ influxdb_ee_data_rpm }}
   notify: restart influxdb
