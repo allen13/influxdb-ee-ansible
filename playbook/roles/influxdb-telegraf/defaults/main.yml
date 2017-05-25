@@ -1,0 +1,5 @@
+telegraf_tags: []
+
+influxdb_metrics_db: metrics
+influxdb_metrics_db_user: metrics
+influxdb_metrics_db_password: metrics

@@ -1,0 +1,13 @@
+- name: setup opensource influxdb repository
+  copy: src=influxdb.repo dest=/etc/yum.repos.d/influxdb.repo
+
+- name: install telegraf
+  yum: name=telegraf state=latest
+  notify: restart telegraf
+
+- name: install telegraf setup
+  template: src=telegraf.conf dest=/etc/telegraf/telegraf.conf
+  notify: restart telegraf
+
+- name: start and enable telegraf
+  service: name=telegraf state=started enabled=yes

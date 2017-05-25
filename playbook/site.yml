@@ -7,6 +7,15 @@
   tags:
     - shared-hosts-file
 
+- name: influxdb-telegraf
+  hosts: telegraf
+  gather_facts: false
+  become: true
+  roles:
+    - influxdb-telegraf
+  tags:
+    - influxdb-telegraf
+
 - name: influxdb-meta
   hosts: influxdb-meta
   gather_facts: false
