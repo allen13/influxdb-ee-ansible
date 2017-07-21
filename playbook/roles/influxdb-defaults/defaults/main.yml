@@ -11,4 +11,6 @@ influxdb_ee_https_enabled: "false"
 influxdb_ee_meta_tls_enabled: "false"
 influxdb_ee_meta_insecure_tls: "false"
 
+#either inmem or tsi1
 influxdb_index_version: tsi1
+influxdb_store_enabled: "false"
