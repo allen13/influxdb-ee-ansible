@@ -14,6 +14,3 @@ influxdb-03
 [influxdb-data]
 influxdb-01
 influxdb-02
-
-[influxdb-web]
-influxdb-01
