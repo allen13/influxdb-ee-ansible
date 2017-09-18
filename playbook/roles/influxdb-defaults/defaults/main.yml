@@ -14,3 +14,5 @@ influxdb_ee_meta_insecure_tls: "false"
 #either inmem or tsi1
 influxdb_index_version: tsi1
 influxdb_store_enabled: "false"
+influxdb_query_log_enabled: "false"
+influxdb_http_request_logging_enabled: "false"
