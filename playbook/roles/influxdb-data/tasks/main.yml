@@ -13,7 +13,17 @@
   template:
     src: influxdb.conf
     dest: /etc/influxdb/influxdb.conf
+    owner: influxdb
+    group: influxdb
   notify: restart influxdb
+
+- name: setup influxdb license file
+  copy:
+    content: "{{ influxdb_ee_license_file | default('') }}"
+    dest: /etc/influxdb/influx-enterprise.key.json
+    owner: influxdb
+    group: influxdb
+  when: influxdb_ee_license_file is defined
 
 - name: start and enable influxdb
   service: name=influxdb state=started enabled=yes
