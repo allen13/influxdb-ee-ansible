@@ -24,6 +24,7 @@
     owner: influxdb
     group: influxdb
   when: influxdb_ee_license_file is defined
+  notify: restart influxdb
 
 - name: start and enable influxdb
   service: name=influxdb state=started enabled=yes

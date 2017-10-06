@@ -13,6 +13,17 @@
   template:
     src: influxdb-meta.conf
     dest: /etc/influxdb/influxdb-meta.conf
+    owner: influxdb
+    group: influxdb
+  notify: restart influxdb-meta
+
+- name: setup influxdb license file
+  copy:
+    content: "{{ influxdb_ee_license_file | default('') }}"
+    dest: /etc/influxdb/influx-enterprise.key.json
+    owner: influxdb
+    group: influxdb
+  when: influxdb_ee_license_file is defined
   notify: restart influxdb-meta
 
 - name: start and enable influxdb-meta
