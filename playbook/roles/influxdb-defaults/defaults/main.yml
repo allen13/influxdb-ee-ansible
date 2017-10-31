@@ -1,5 +1,5 @@
-influxdb_ee_meta_rpm: https://dl.influxdata.com/enterprise/releases/influxdb-meta-1.3.5_c1.3.5.x86_64.rpm
-influxdb_ee_data_rpm: https://dl.influxdata.com/enterprise/releases/influxdb-data-1.3.5_c1.3.5.x86_64.rpm
+influxdb_ee_meta_rpm: https://dl.influxdata.com/enterprise/releases/influxdb-meta-1.3.7_c1.3.7.x86_64.rpm
+influxdb_ee_data_rpm: https://dl.influxdata.com/enterprise/releases/influxdb-data-1.3.7_c1.3.7.x86_64.rpm
 
 influxdb_ee_auth_enabled: "true"
 influxdb_ee_registration_enabled: "false"
